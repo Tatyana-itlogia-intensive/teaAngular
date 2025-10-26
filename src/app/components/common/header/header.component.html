@@ -1,0 +1,27 @@
+<header class="header bg-light py-2 ps-3 pe-3">
+  <nav class="navbar navbar-expand-lg wow animate__heartBeat">
+    <div class="container-fluid">
+      <a class="navbar-brand me-2" href="#">Logo</a>
+      <button class="navbar-toggler hvr-back-pulse" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/products" routerLinkActive="active">Каталог</a>
+          </li>
+        </ul>
+        <form class="d-flex gap-2 wow animate__heartBeat" role="search">
+          <input class="form-control bg-white py-1 ps-3 pe-3 border border-secondary border-opacity-25 border-1 rounded-1" type="search" placeholder="Поиск чая" [formControl]="productSearch">
+          <button class="btn btn-outline-primary hvr-back-pulse text-primary py-1 px-4 rounded-1 flex-shrink-0" type="button" (click)="search()"> Найти</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</header>

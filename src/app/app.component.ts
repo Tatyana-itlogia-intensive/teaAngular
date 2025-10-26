@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'teaAngular';
+
+  //   /*для анимации*/
+  //   new WOW({
+  //     animateClass: 'animate__animated',
+  //   }).init();
+
+
 }

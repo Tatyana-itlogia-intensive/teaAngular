@@ -1,0 +1,14 @@
+<section class="field d-flex justify-content-center">
+  <section class="product-image w-25 m-auto">
+    <img src="{{product.image}}" alt="1" class="mw-100">
+  </section>
+  <section class="product-info py-1 mw-25 m-auto text-center">
+    <h4 class="fs-5 fw-bold wow animate__bounceInDown">{{product.title}}</h4>
+    <p class="pb-3 text-primary fw-bold">{{product.price}} руб</p>
+    <p class="pb-3">{{product.description}}</p>
+    <a class="hvr-back-pulse wow animate__heartBeat bg-primary text-white  border border-primary border-1 rounded-1 py-3 px-3" (click)="buy()">
+      Купить
+    </a>
+  </section>
+</section>
+

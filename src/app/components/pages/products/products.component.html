@@ -1,0 +1,26 @@
+<section class="products pb-4 ">
+  <section class="container">
+    <h3 class="text-center mb-4 fs-2 fw-bold wow animate__bounceInDown">{{nameCatalog}}</h3>
+
+    <div *ngIf="loading" class="loader-bg">
+      <div class="loader"></div>
+    </div>
+
+    <section class="products-items row d-flex align-items-baseline justify-content-between">
+
+      <section *ngFor="let product of products" class="product-item col-lg-4 col-md-6 col-sm-8 mb-4 wow animate__pulse border border-primary rounded-1 mw-50">
+        <a class="product-image" href="src/assets/images/image 1_1.png">
+          <img src="{{product.image}}" alt="1" class="mw-100">
+        </a>
+        <section class="product-info py-1 px-1 mw-50">
+          <h4 class="mb-3 fs-5 fw-bold wow animate__bounceInDown">{{product.title}}</h4>
+          <p class="mb-0 pb-3">{{product.description}}</p>
+          <a class="hvr-back-pulse wow animate__heartBeat bg-primary text-white  border border-primary border-1 rounded-1 py-3 px-3" routerLink="/product/:{{product.id}}">
+            Подробнее
+          </a>
+        </section>
+      </section>
+
+    </section>
+  </section>
+</section>

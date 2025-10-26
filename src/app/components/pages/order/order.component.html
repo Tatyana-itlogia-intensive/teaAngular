@@ -1,0 +1,129 @@
+<section class="order pb-5 d-flex mx-auto">
+  <section class="container px-0 position-relative">
+    <h3 id="orderTitle" class="createOrder text-center fs-2 fw-bold wow animate__wobble" *ngIf="!successForm">Сделать заказ</h3>
+    <h3 class="thanks text-center fs-2 fw-bold wow animate__wobble" *ngIf="successForm">Спасибо за заказ!</h3>
+
+    <form [formGroup]="formValues"  id="formBlock" class="row mx-auto col-lg-6 col-sm-8 col-xs-12 wow animate__wobble"
+    *ngIf="!successForm">
+      <div class="col-lg-12 mt-2">
+        <label for="product" class="form-label">Товар</label>
+        <input type="text" class="form-control" id="product" formControlName="product">
+<!--        [class]="{'border-danger': product?.invalid && (product?.dirty || product?.touched)}"-->
+<!--        <div *ngIf="product?.invalid && (product?.dirty || product?.touched)">-->
+<!--          <div class="text-danger" *ngIf="product?.errors?.['required']">-->
+<!--            Поле Товар является обязательным!-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+
+      <div class="col-lg-4 col-sm-6 col-xs-12 mt-2">
+        <label for="name" class="form-label">Имя</label>
+        <input type="text" class="form-control" id="name" formControlName="name"
+               [class]="{'border-danger': name?.invalid && (name?.dirty || name?.touched)}">
+
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+          <div class="text-danger" *ngIf="name?.errors?.['required']">
+            Поле Имя является обязательным!
+          </div>
+          <div class="text-danger" *ngIf="name?.errors?.['pattern']">
+            Поле Имя может содержать только буквы!
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6 col-xs-12 mt-2">
+        <label for="surname" class="form-label">Фамилия</label>
+        <input type="text" class="form-control" id="surname" formControlName="surname"
+               [class]="{'border-danger': surname?.invalid && (surname?.dirty || surname?.touched)}">
+
+        <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+          <div class="text-danger" *ngIf="surname?.errors?.['required']">
+            Поле Фамилия является обязательным!
+          </div>
+          <div class="text-danger" *ngIf="surname?.errors?.['pattern']">
+            Поле Фамилия может содержать только буквы!
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-7 col-xs-12 mt-2">
+        <label for="number" class="form-label">Телефон</label>
+        <input type="tel" class="form-control" id="number" formControlName="phone"
+               [class]="{'border-danger': phone?.invalid && (phone?.dirty || phone?.touched)}">
+
+        <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+          <div class="text-danger" *ngIf="phone?.errors?.['required']">
+            Поле Телефон является обязательным!
+          </div>
+          <div class="text-danger" *ngIf="phone?.errors?.['pattern']">
+            Поле Телефон должно содержать 11 цифр!
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-6 col-xs-12 mt-2">
+        <label for="country" class="form-label">Страна</label>
+        <input type="text" list="datalistOptions" class="form-control" id="country" formControlName="country"
+               [class]="{'border-danger': country?.invalid && (country?.dirty || country?.touched)}">
+        <datalist id="datalistOptions">
+          <option value="Беларусь">
+          <option value="Россия">
+          <option value="Литва">
+          <option value="Латвия">
+          <option value="Польша">
+          <option value="Украина">
+        </datalist>
+        <div *ngIf="country?.invalid && (country?.dirty || country?.touched)">
+          <div class="text-danger" *ngIf="country?.errors?.['required']">
+            Поле Страна является обязательным!
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 mt-2">
+        <label for="index" class="form-label">Индекс</label>
+        <input type="number" class="form-control" id="index" formControlName="index"
+               [class]="{'border-danger': index?.invalid && (index?.dirty || index?.touched)}">
+
+        <div *ngIf="index?.invalid && (index?.dirty || index?.touched)">
+          <div class="text-danger" *ngIf="index?.errors?.['required']">
+            Поле Индекс является обязательным!
+          </div>
+          <div class="text-danger" *ngIf="index?.errors?.['pattern']">
+            Поле Индекс должно содержать 6 цифр!
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-2">
+        <label for="address" class="form-label">Адрес</label>
+        <input type="text" class="form-control" id="address" formControlName="address"
+               [class]="{'border-danger': address?.invalid && (address?.dirty || address?.touched)}">
+        <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+          <div class="text-danger" *ngIf="address?.errors?.['required']">
+            Поле Адрес является обязательным!
+          </div>
+          <div class="text-danger" *ngIf="address?.errors?.['pattern']">
+            В поле «Адрес» можно вводить: буквы, цифры, пробелы, дефис и слеш, все остальное запрещено
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-2">
+        <label for="address" class="form-label">Комментарий к заказу</label>
+        <textarea name="comment" id="comment" formControlName="comment" cols="80" rows="3" class="form-control border-0"></textarea>
+      </div>
+
+      <div class="col-12 mt-3">
+        <a id="create-order"
+           class="hvr-back-pulse wow animate__heartBeat btn bg-primary text-white border border-primary border-1 rounded-1 py-3 px-3 open-popup-link"
+           type="button" (click)="createOrder()">Отправить</a>
+        <div class="text-danger fw-bold" *ngIf="errorForm">Произошла ошибка. Попробуйте еще раз!</div>
+      </div>
+    </form>
+
+    <section id="success"
+             class="d-none d-flex justify-content-center align-items-center flex-column text-center fs-2 fw-bold wow animate__wobble">
+      Спасибо за заказ.
+      <p>Мы свяжемся с вами в ближайшее время!</p>
+    </section>
+
+  </section>
+</section>

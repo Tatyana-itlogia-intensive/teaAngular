@@ -21,12 +21,18 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    "types": [
+      "node", // Example: if you also use Node.js types
+      "jquery"
+      // ... other types you might be using
     ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "skipLibCheck": true
   }
 }
