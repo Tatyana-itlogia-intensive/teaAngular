@@ -5,6 +5,30 @@
   /*src: url("../assets/fonts/slick.woff");*/
   /*src: url("../assets/fonts/slick.svg");*/
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+
+
 body {
   font-family: Arial, sans-serif;
 }

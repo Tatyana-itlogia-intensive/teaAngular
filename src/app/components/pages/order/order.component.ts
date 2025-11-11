@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {Subscription} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {HttpService} from "../../../services/http.service";
 
 
@@ -12,46 +12,48 @@ import {HttpService} from "../../../services/http.service";
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  // создаем FormGroup для реактивной формы
-  public formValues=  new FormGroup({
-    product : new FormControl('', [Validators.required]),
-    name : new FormControl('', [Validators.required, Validators.pattern('^[А-Яа-я]+')]),
-    surname : new FormControl('', [Validators.required, Validators.pattern('^[А-Яа-я]+')]),
-    phone : new FormControl('', [Validators.required, Validators.pattern('[+]?[0-9]{11}')]),
-    country : new FormControl('', Validators.required),
-    index : new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
-    address : new FormControl('', [Validators.required, Validators.pattern('^[ А-Яа-я0-9/-]+')]),
-    comment : new FormControl(''),
+  // создаем FormBuilder для реактивной формы
+    orderForm=  this.fb.group({
+    product : ['', [Validators.required]],
+    name : ['', [Validators.required, Validators.pattern('^[А-Яа-я]+')]],
+    surname : ['', [Validators.required, Validators.pattern('^[А-Яа-я]+')]],
+    phone : ['', [Validators.required, Validators.pattern('[+]?[0-9]{11}')]],
+    country : ['', Validators.required],
+    index : ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
+    address : ['', [Validators.required, Validators.pattern('^[ А-Яа-я0-9/-]+')]],
+    comment : [''],
   })
-
-  public btn = $('create-order');
 
   // создаем геттеры для упрощения кода в шаблоне
   get product() {
-    return this.formValues.get('product');
+    return this.orderForm.get('product');
   }
   get name() {
-    return this.formValues.get('name');
+    return this.orderForm.get('name');
   }
   get surname() {
-    return this.formValues.get('surname');
+    return this.orderForm.get('surname');
   }
   get phone() {
-    return this.formValues.get('phone');
+    return this.orderForm.get('phone');
   }
   get country() {
-    return this.formValues.get('country');
+    return this.orderForm.get('country');
   }
   get index() {
-    return this.formValues.get('index');
+    return this.orderForm.get('index');
   }
   get address() {
-    return this.formValues.get('address');
+    return this.orderForm.get('address');
+  }
+  get comment() {
+    return this.orderForm.get('comment');
   }
 
 
   constructor(private activateRoute: ActivatedRoute,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private fb: FormBuilder) {
 
   }
   // Создаем подписки чтобыпотом отписаться
@@ -62,92 +64,59 @@ export class OrderComponent implements OnInit, OnDestroy {
   public errorForm: boolean = false;
 
   /*валидация формы*/
-  createOrder() {
+  createOrder(): void {
 
     this.successForm = false;
     this.errorForm = false;
-    if (!this.formValues.get('name')!.value) {
-      alert('Заполните, пожалуйста, поле Имя');
-      return;
-    }
-    if (!this.formValues.get('surname')!.value) {
-      alert('Заполните, пожалуйста, поле Фамилия');
-      return;
-    }
-    if (!this.formValues.get('phone')!.value) {
-      alert('Заполните, пожалуйста, поле Телефон');
-      return;
-    }
-    if (!this.formValues.get('country')!.value) {
-      alert('Заполните, пожалуйста, поле Страна');
-      return;
-    }
-    if (!this.formValues.get('index')!.value) {
-      alert('Заполните, пожалуйста, поле Индекс');
-      return;
-    }
-    if (!this.formValues.get('address')!.value) {
-      alert('Заполните, пожалуйста, поле Адрес');
-      return;
-    }
 
-    this.btn.addClass('disabled');
-
-    this.subscriptionOrder = this.httpService.createOrder({
-      product : this.formValues.get('product')!.value,
-      name :  this.formValues.get('name')!.value,
-      last_name : this.formValues.get('surname')!.value,
-      phone :  this.formValues.get('phone')!.value,
-      country : this.formValues.get('country')!.value,
-      zip :  this.formValues.get('index')!.value,
-      address :  this.formValues.get('address')!.value,
-      comment :  this.formValues.get('comment')!.value,
-    }).subscribe(
-      {
-        next: (response) => {
-          if (response.success && !response.message) {
-
-            this.btn.removeClass('disabled');
-            this.formValues.patchValue({
-              name :  '',
-              surname : '',
-              phone :  '',
-              country : '',
-              index :  '',
-              address :  '',
-              comment :  '',
-            });
-            this.successForm = true;
+    if (this.product && this.name && this.surname && this.phone && this.country && this.address && this.index && this.comment) {
+      this.subscriptionOrder = this.httpService.createOrder({
+        product : this.product.value,
+        name :  this.name.value,
+        last_name : this.surname.value,
+        phone :  this.phone.value,
+        country : this.country.value,
+        zip :  this.index.value,
+        address :  this.address.value,
+        comment :  this.comment.value,
+      }).subscribe(
+        {
+          next: (response: {success: boolean; message?: string}): void => {
+            if (response.success && !response.message) {
+              this.orderForm.reset();
+              this.successForm = true;
+            }
+          },
+          error: (error: {error: string}): void => {
+            this.errorForm = true;
+            setTimeout((): void => {
+              this.errorForm = false;
+            }, 3000)
+            console.log(error);
           }
-        },
-        error: (error) => {
-          this.errorForm = true;
-          setTimeout(() => {
-            this.errorForm = false;
-          }, 3000)
-          console.log(error);
         }
-      }
-    );
+      );
+    }
 
   }
 
   ngOnInit(): void {
     // присвоить значение в поле Продукт
-    this.subscription = this.activateRoute.queryParams.subscribe((params) => {
+    this.subscription = this.activateRoute.queryParams.subscribe((params: Params): void => {
       if (params['product']) {
-        this.formValues.patchValue({
+        this.orderForm.patchValue({
           product: params['product']
         });
       }
     })
 
     // Сделать поле Продукт неактивным (неизменяемым)
-    this.formValues.get('product')?.disable();
+    this.orderForm.get('product')?.disable();
 
   }
   ngOnDestroy() {
     this.subscription?.unsubscribe();
     this.subscriptionOrder?.unsubscribe();
   }
+
 }

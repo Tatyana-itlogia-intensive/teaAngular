@@ -8,11 +8,21 @@
 </head>
 <body class="bg-white text-black fs-6 fw-normal fst-normal">
 
-<header-component></header-component>
+<div class="wrapper">
 
-<router-outlet></router-outlet>
+  <div class="content">
+    <header-component></header-component>
 
-<footer-component></footer-component>
+    <router-outlet></router-outlet>
+
+  </div>
+
+
+    <footer-component class="footer"></footer-component>
+
+
+
+</div>
 
 </body>
 </html>
