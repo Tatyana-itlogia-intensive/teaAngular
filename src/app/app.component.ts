@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+
+declare var WOW: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'teaAngular';
 
-  //   /*для анимации*/
-  //   new WOW({
-  //     animateClass: 'animate__animated',
-  //   }).init();
 
+  constructor() {
+  }
+  ngOnInit(): void {
+    WOW.init({
+      animateClass: 'animate__animated',
+    });
+  }
 
 }

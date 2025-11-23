@@ -2,13 +2,15 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Subscription} from "rxjs";
 import {FormBuilder, Validators} from "@angular/forms";
-import {HttpService} from "../../../services/http.service";
+import {HttpService} from "../../shared/services/http.service";
+
+
 
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit, OnDestroy {
 

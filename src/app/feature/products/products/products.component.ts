@@ -1,15 +1,18 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpService} from "../../../services/http.service";
-import {ProductType} from "../../../types/product.type";
+
+
 import {Subscription} from "rxjs";
-import {SearchService} from "../../../services/search.service";
+
 import {ActivatedRoute, Params} from "@angular/router";
+import {HttpService} from "../../../shared/services/http.service";
+import {ProductType} from "../../../../types/product.type";
+import {SearchService} from "../../../shared/services/search.service";
 
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 

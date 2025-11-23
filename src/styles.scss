@@ -12,80 +12,137 @@
 }
 html,
 body {
+  font-family: Arial, sans-serif;
   height: 100%;
 }
 .wrapper{
   display: flex;
   flex-direction: column;
   height: 100%;
+  .content {
+    flex: 1 0 auto;
+  }
+  .footer {
+    flex: 0 0 auto;
+  }
 }
-.content {
-  flex: 1 0 auto;
+.bg-gray {
+  background-color: rgba(181, 177, 177, 0.51);
 }
+.main {
+  .container {
+    ngx-slick-carousel {
+      /*стрелка на слайдере вправо*/
+      .slick-next {
+        position: absolute;
+        top: 45%;
+        left: 92%;
+        /*вид стрелок на слайдере*/
+        &::before  {
+          display: flex;
+          justify-content: center;
+          color: white;
+          background: #595555;
+          border: 1px solid #0d6efd;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          font-size: 42px;
+          line-height: 1.0495;
+          cursor: pointer;
+        }
+      }
+      /*стрелка на слайдере влево*/
+      .slick-prev {
+        position: absolute;
+        top: 45%;
+        left: 1%;
+        z-index: 1;
+        /*вид стрелок на слайдере*/
+        &::before {
+          display: flex;
+          justify-content: center;
+          color: white;
+          background: #595555;
+          border: 1px solid #0d6efd;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          font-size: 42px;
+          line-height: 1.0495;
+          cursor: pointer;
+        }
+      }
 
-.footer {
-  flex: 0 0 auto;
-}
+      /*убрать маркеры на слайдере*/
+      .slick-dots {
+        visibility: hidden;
+      }
+      .slick-list {
+        .slick-track {
+          div{
+            &.banner1 {
+              background-position-x: center;
+              background-size: cover;
+              padding-top: 12rem!important;
+              padding-bottom: 12rem!important;
+              padding-left: 7.5rem!important;
+            }
+          }
 
-
-
-body {
-  font-family: Arial, sans-serif;
+          .banner2 {
+            background: no-repeat;
+            background-position-x: 90%;
+            background-position-y: center;
+            padding-top: 13rem!important;
+            padding-bottom: 13rem!important;
+            padding-left: 7.625rem!important;
+          }
+          .banner3 {
+            background: no-repeat;
+            background-position-x: center;
+            background-size: cover;
+            padding-top: 13rem!important;
+            padding-bottom: 13rem!important;
+            padding-left: 7.325rem!important;
+          }
+        }
+      }
+    }
+  }
 }
-/*стрелка на слайдере вправо*/
-.slick-next {
-  position: absolute;
-  top: 45%;
-  right: 4%;
-
-}
-/*стрелка на слайдере влево*/
-.slick-prev {
-  position: absolute;
-  top: 45%;
-  left: 1%;
-  z-index: 1;
-
-}
-/*вид стрелок на слайдере*/
-.slick-prev:before, .slick-next:before  {
-  display: flex;
-  justify-content: center;
-  color: white;
-  background: #595555;
-  border: 1px solid #0d6efd;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 42px;
-  line-height: 1.0495;
-  cursor: pointer;
-
-}
-/*убрать маркеры на слайдере*/
-.slick-dots {
-  visibility: hidden;
-}
-
-
-.ui-accordion .ui-accordion-header {
-  padding: 24px 24px 24px 23px;
-  border-radius: 10px;
-  background: linear-gradient(0deg, #076BFF 0%, #007BFF 100%);
-  border: none;
-  margin: 0 0 16px 0;
-}
-.ui-state-active, .ui-state-default {
-  font-weight: 700;
-  color: white;
-}
-.ui-accordion .ui-accordion-content {
-  height: auto;
-  border: none;
-  padding: 0 0 24px 23px;
-}
-.ui-accordion-content p {
-  margin-bottom: 0;
+.about {
+  .container {
+    .accordion {
+      padding: 24px 24px 24px 23px;
+      --bs-accordion-btn-bg: #076BFF;
+      border: none;
+      border-radius: 10px;
+      margin: 0 0 16px 0;
+      --bs-accordion-btn-color: #efefe8;
+      --bs-accordion-active-color: #efefe8;
+      --bs-accordion-active-bg: #076BFF;
+      .ui-accordion .ui-accordion-header {
+        padding: 24px 24px 24px 23px;
+        border-radius: 10px;
+        background: linear-gradient(0deg, #076BFF 0%, #007BFF 100%);
+        border: none;
+        margin: 0 0 16px 0;
+      }
+      .ui-state-active, .ui-state-default {
+        font-weight: 700;
+        color: white;
+      }
+      .ui-accordion .ui-accordion-content {
+        height: auto;
+        border: none;
+        padding: 0 0 24px 23px;
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }
 
 /*для позиционирования стрелки*/
@@ -94,7 +151,7 @@ body {
 }
 /*активная стрелка на accordion*/
 .ui-state-active .ui-icon, .ui-button:active .ui-icon {
-  background-image: url(../src/assets/images/images/ui-icons_ffffff_256x240.png);
+  //background-image: url(../src/assets/images/images/ui-icons_ffffff_256x240.png);
   position: absolute;
   right: 28px;
   top: 24px;
@@ -112,7 +169,7 @@ body {
 }
 /*неактивные стрелки на accordion*/
 .ui-accordion-header .ui-icon {
-  background-image: url(../src/assets/images/images/ui-icons_ffffff_256x240.png);
+  //background-image: url(../src/assets/images/images/ui-icons_ffffff_256x240.png);
   position: absolute;
   right: 28px;
   top: 24px;
@@ -130,6 +187,35 @@ body {
 /*задать макс product-info*/
 .mw-50 {
   max-width: 414px;
+}
+.field {
+  margin-top: 140px;
+  margin-bottom: 140px;
+}
+.loader-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 242, 242, 0.49);
+}
+
+.loader {
+  border: 15px solid #597fff;
+  border-top: 15px solid #062dc3;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /*переопределение стилей*/
@@ -265,44 +351,8 @@ form .px-3 {
   margin-right: auto!important;
   margin-left: auto!important;
 }
-.banner1 .py-1 {
-  padding-top: 12rem!important;
-  padding-bottom: 12rem!important;
-}
-.banner2 .py-1 {
-  padding-top: 13rem!important;
-  padding-bottom: 13rem!important;
-}
-.banner3 .py-1 {
-  padding-top: 13rem!important;
-  padding-bottom: 13rem!important;
-}
-.banner1 .ps-5 {
-  padding-left: 7.5rem!important;
-}
-.banner2 .ps-5 {
-  padding-left: 7.625rem!important;
-}
-.banner3 .ps-5 {
-  padding-left: 7.625rem!important;
-}
-
-.banner1 {
-  background: url("../src/assets/images/1.png") no-repeat;
-  background-position-x: center;
-  background-size: cover;
-
-}
-.banner2 {
-  background: url("../src/assets/images/2.png") no-repeat;
-  background-position-x: 90%;
-  background-position-y: center;
-
-}
-.banner3 {
-  background: url("../src/assets/images/3.png") no-repeat;
-  background-position-x: center;
-  background-size: cover;
+a {
+  text-underline: none!important;
 }
 .border-primary {
   border-color: #E3E3E3!important;
@@ -312,7 +362,7 @@ form .px-3 {
   padding-left: 0;
 }
 a {
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 /*1200-1399*/
@@ -390,3 +440,7 @@ a {
   }
 
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+

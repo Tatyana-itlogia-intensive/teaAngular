@@ -20,9 +20,9 @@
 
     <ngx-slick-carousel [config]="config" #slickModal class="main-slick row">
       <ng-container *ngFor="let slide of slides">
-        <div class="{{slide.class}}">
+        <div class="{{slide.class}}" style="{{slide.img}}">
           <div ngxSlickItem class="main-slick-info py-1 ps-5">
-          <h1 class="mb-5 fs-1 fw-bold wow animate__flip">{{slide.title}}</h1>
+          <h1 class="mb-5 fs-1 fw-bold wow animate__flip">{{slide.title}} <p>{{slide.title2}}</p></h1>
           <p class="mb-5 fs-5">{{slide.text}}</p>
           <button class="hvr-back-pulse wow animate__heartBeat bg-primary text-white  border border-primary border-1 rounded-1 py-3 px-3">
             Заполнить
@@ -39,7 +39,8 @@
 <section class="about pb-4">
   <section class="container">
     <h3 class="text-center mb-4 fs-2 fw-bold wow animate__bounceInDown">Ответы на часто задаваемые вопросы</h3>
-    <ngb-accordion id="accordion" class="mx-auto row col-lg-8 col-md-10 col-xs-12 wow animate__flipInY" #acc="ngbAccordion" activeIds="static-1">
+
+    <ngb-accordion [closeOthers]="true" id="accordion" class="accordion mx-auto row col-lg-8 col-md-10 col-xs-12 wow animate__flipInY" #acc="ngbAccordion" activeIds="static-1">
       <ngb-panel id="static-1" title="Собираете ли вы подарочные боксы?" class="mx-auto">
         <ng-template ngbPanelContent class="mx-auto">
           <p>Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и стоимость!</p>

@@ -1,31 +1,34 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import {Subject, Subscription} from "rxjs";
+import {config, Subject, Subscription} from "rxjs";
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   public popup = false;
 
   @ViewChild('slickModal') slickModal!: SlickCarouselComponent;
   slides = [
-    { img: "../src/assets/images/1.png",
+    { img: 'background-image: url( ../../../../assets/images/1.png)',
       title: "Скидки на травянные чаи",
+      title2: "",
       text: "Узнай все подробности, заполнив заявку",
       class: "banner1"
     },
-    { img: "../src/assets/images/2.png",
-      title: "Закажи три пачки чая и получи подарок",
+    { img: 'background-image: url(../../../../assets/images/2.png)',
+      title: "Закажи три пачки чая",
+      title2: "и получи подарок",
       text: "",
       class: "banner2"
     },
-    { img: "../src/assets/images/3.png",
-      title: "Попробуй нашу новинку — ягодный чай",
+    { img: 'background-image: url(../../../../assets/images/3.png)',
+      title: "Попробуй нашу новинку",
+      title2: "— ягодный чай",
       text: "",
       class: "banner3"
     }
@@ -45,10 +48,9 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private subject: Subject<string>;
   private subscription: Subscription | null = null;
-
   constructor() {
     this.subject = new Subject<string>();
-    setTimeout(() => {
+    setTimeout((): void => {
       this.subject.next('HELLO')
     }, 10000)
 

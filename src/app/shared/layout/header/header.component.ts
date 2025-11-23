@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl} from "@angular/forms";
-import {SearchService} from "../../../services/search.service";
+import {SearchService} from "../../services/search.service";
+
 
 
 @Component({
@@ -34,7 +35,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }

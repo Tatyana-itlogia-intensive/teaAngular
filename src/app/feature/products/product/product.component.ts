@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductType} from "../../../types/product.type";
-import {HttpService} from "../../../services/http.service";
+
 import {ActivatedRoute, Router} from "@angular/router";
 import {map} from "rxjs";
 import {HttpParams} from "@angular/common/http";
+import {ProductType} from "../../../../types/product.type";
+import {HttpService} from "../../../shared/services/http.service";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
 
