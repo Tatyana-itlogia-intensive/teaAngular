@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import {ProductComponent} from "./product/product.component";
 import {ProductsComponent} from "./products/products.component";
-import {MainRoutingModule} from "../main/main-routing.module";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import {config, Subject, Subscription} from "rxjs";
+import { AfterViewInit, ViewChild} from '@angular/core';
+import {Subject, Subscription} from "rxjs";
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 
@@ -10,23 +10,23 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
-  public popup = false;
+  public popup: boolean = false;
 
   @ViewChild('slickModal') slickModal!: SlickCarouselComponent;
-  slides = [
-    { img: 'background-image: url( ../../../../assets/images/1.png)',
+  slides :{img: string; title: string; title2: string; text: string; class: string}[] = [
+    { img: 'background-image: url( assets/images/1.png)',
       title: "Скидки на травянные чаи",
       title2: "",
       text: "Узнай все подробности, заполнив заявку",
       class: "banner1"
     },
-    { img: 'background-image: url(../../../../assets/images/2.png)',
+    { img: 'background-image: url(assets/images/2.png)',
       title: "Закажи три пачки чая",
       title2: "и получи подарок",
       text: "",
       class: "banner2"
     },
-    { img: 'background-image: url(../../../../assets/images/3.png)',
+    { img: 'background-image: url(assets/images/3.png)',
       title: "Попробуй нашу новинку",
       title2: "— ягодный чай",
       text: "",
@@ -34,7 +34,8 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  config = {
+  config: {slidesToShow: number; slidesToScroll: number; dots: boolean; infinite: boolean; speed: number;
+    fade: boolean; cssEase: string; autoplay: boolean; autoplaySpeed: number} = {
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: true,
@@ -55,25 +56,25 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 10000)
 
   }
-  closePopup() {
+  closePopup(): boolean {
     return this.popup = false;
   }
 
   ngOnInit(): void {
     this.subscription = this.subject
       .subscribe(
-        (param:string) => {
+        (param:string): void => {
           console.log(param);
           this.popup = true;
         }
       )
 
   }
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.slickModal.slickGoTo(1);
 
 }
-ngOnDestroy() {
+ngOnDestroy(): void {
     this.subscription?.unsubscribe();
 }
 

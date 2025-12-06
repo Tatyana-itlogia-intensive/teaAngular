@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Subscription} from "rxjs";
-import {FormBuilder, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpService} from "../../shared/services/http.service";
 
 
@@ -15,7 +15,7 @@ import {HttpService} from "../../shared/services/http.service";
 export class OrderComponent implements OnInit, OnDestroy {
 
   // создаем FormBuilder для реактивной формы
-    orderForm=  this.fb.group({
+    orderForm: FormGroup =  this.fb.group({
     product : ['', [Validators.required]],
     name : ['', [Validators.required, Validators.pattern('^[А-Яа-я]+')]],
     surname : ['', [Validators.required, Validators.pattern('^[А-Яа-я]+')]],
@@ -27,28 +27,28 @@ export class OrderComponent implements OnInit, OnDestroy {
   })
 
   // создаем геттеры для упрощения кода в шаблоне
-  get product() {
+  get product(): AbstractControl<string | null> | null {
     return this.orderForm.get('product');
   }
-  get name() {
+  get name(): AbstractControl<string | null> | null {
     return this.orderForm.get('name');
   }
-  get surname() {
+  get surname(): AbstractControl<string | null> | null {
     return this.orderForm.get('surname');
   }
-  get phone() {
+  get phone(): AbstractControl<string | null> | null {
     return this.orderForm.get('phone');
   }
-  get country() {
+  get country(): AbstractControl<string | null> | null {
     return this.orderForm.get('country');
   }
-  get index() {
+  get index(): AbstractControl<string | null> | null {
     return this.orderForm.get('index');
   }
-  get address() {
+  get address(): AbstractControl<string | null> | null {
     return this.orderForm.get('address');
   }
-  get comment() {
+  get comment(): AbstractControl<string | null> | null {
     return this.orderForm.get('comment');
   }
 
@@ -116,7 +116,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderForm.get('product')?.disable();
 
   }
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription?.unsubscribe();
     this.subscriptionOrder?.unsubscribe();
   }

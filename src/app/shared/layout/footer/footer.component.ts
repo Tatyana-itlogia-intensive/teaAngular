@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {NgwWowService} from "ngx-wow";
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'footer-component',
