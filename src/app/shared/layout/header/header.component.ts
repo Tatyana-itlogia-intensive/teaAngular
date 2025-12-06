@@ -11,12 +11,12 @@ import {SearchService} from "../../services/search.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  productSearch = new FormControl();
+  productSearch: FormControl = new FormControl();
 
   constructor(private searchService: SearchService,
               private router: Router) { }
 
-  search() {
+  search(): void {
     if (this.productSearch) {
       if (this.productSearch.value) {
         console.log("В поиске что-то есть");

@@ -1,6 +1,5 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-
-declare var WOW: any;
+import {Component, OnInit} from '@angular/core';
+import {NgwWowService} from "ngx-wow";
 
 @Component({
   selector: 'app-root',
@@ -8,13 +7,13 @@ declare var WOW: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'teaAngular';
+  title: string = 'teaAngular';
 
 
-  constructor() {
+  constructor(private WOW: NgwWowService) {
   }
   ngOnInit(): void {
-    WOW.init({
+    this.WOW.init({
       animateClass: 'animate__animated',
     });
   }

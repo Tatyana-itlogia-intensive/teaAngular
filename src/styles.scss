@@ -30,6 +30,7 @@ body {
   background-color: rgba(181, 177, 177, 0.51);
 }
 .main {
+  overflow: hidden;
   .container {
     ngx-slick-carousel {
       /*стрелка на слайдере вправо*/

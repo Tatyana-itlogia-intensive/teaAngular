@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 
 import {ActivatedRoute, Router} from "@angular/router";
 import {map} from "rxjs";
-import {HttpParams} from "@angular/common/http";
 import {ProductType} from "../../../../types/product.type";
 import {HttpService} from "../../../shared/services/http.service";
 
@@ -30,7 +29,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  buy() {
+  buy(): void {
     this.router.navigate(['/order'], { queryParams: { product: this.product.title } });
 
   }
